@@ -1,0 +1,27 @@
+.header__button {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: right;
+  color: #ffffff;
+  text-decoration: none;
+  margin: 51px 0 46px;
+}
+  
+.header__button:hover {
+  opacity: 0.6;
+  transition: opacity ease-in;
+}
+  
+@media screen and (max-width: 879px) {
+  .header__button {
+    padding-right: 20px;
+    margin: 38px 0 46px;
+  }  
+}
+
+@media screen and (max-width: 550px) {
+  .header__button {
+    margin: 0;
+  }
+}

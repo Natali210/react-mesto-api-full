@@ -1,0 +1,7 @@
+.element {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  min-width: 282px;
+  margin: auto;
+}

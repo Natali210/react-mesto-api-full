@@ -1,0 +1,11 @@
+.header__current-user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  @media screen and (max-width: 550px) {
+    .header__current-user {
+      flex-direction: column;
+    }
+  }

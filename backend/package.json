@@ -1,0 +1,39 @@
+{
+  "name": "express-mesto-gha",
+  "version": "1.0.0",
+  "description": "Страница для размещения информации об интересных местах России. Страница адаптирована для использования на различных устройствах. Возможно размещение фотографий с указанием автора, изменение его данных. Понравившимся фото возможно поставить лайк, неактуальные удалить. Просмотр фото доступен в виде общего списка, а также в увеличенном виде. На странице реализована регистрация и авторизация.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Natali210/express-mesto-gha.git"
+  },
+  "author": "Natalia Sarycheva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Natali210/express-mesto-gha/issues"
+  },
+  "homepage": "https://github.com/Natali210/express-mesto-gha#readme",
+  "devDependencies": {
+    "eslint": "^8.25.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "celebrate": "^15.0.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-winston": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.1",
+    "validator": "^13.7.0",
+    "winston": "^3.8.2"
+  }
+}
