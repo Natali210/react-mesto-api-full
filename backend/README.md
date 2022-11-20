@@ -2,13 +2,13 @@
 Бэкенд для размещения фотографий интересных мест для путешествий. Предусматривается загрузка новых фото, изменение данных автора. Понравившимся фото возможно поставить лайк, неактуальные удалить. Реализована регистрация и авторизация.
 
 # Используемые технологии
-Express, MongoDB
+NodeJS, Express, MongoDB
 
 # Тесты для проверки
 [![Tests](../../actions/workflows/tests-13-sprint.yml/badge.svg)](../../actions/workflows/tests-13-sprint.yml) [![Tests](../../actions/workflows/tests-14-sprint.yml/badge.svg)](../../actions/workflows/tests-14-sprint.yml)
 
 # Ссылка на проект
-https://github.com/Natali210/express-mesto-gha
+https://github.com/Natali210/react-mesto-api-full
 
 # Директории
 `/routes` — папка с файлами роутера  

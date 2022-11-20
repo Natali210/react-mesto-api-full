@@ -1,5 +1,7 @@
 // Массив доменов, с которых разрешены кросс-доменные запросы
 const allowedCors = [
+  'http://nsarycheva.nomoredomains.club',
+  'https://nsarycheva.nomoredomains.club',
   'http://localhost:3000',
   'https://localhost:3000',
 ];

@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3001";
+export const BASE_URL = 'https://api.nsarycheva.nomoredomains.club';
 
 function request({ url, method = "POST", token, data }) {
   return fetch(`${BASE_URL}${url}`, {

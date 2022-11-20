@@ -27,6 +27,13 @@ app.use(cookieParser());
 // Логгер запросов
 app.use(requestLogger);
 
+// Краш-тест сервера
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(routes);
 
 // Логгер ошибок

@@ -8,7 +8,7 @@
 Реализация с помощью react.
 
 **Ссылки:**
-GitHub: https://github.com/Natali210/react-mesto-auth
+GitHub: https://github.com/Natali210/react-mesto-api-full/tree/main/frontend
 
 **Команды для сборки и запуска проекта:**
 npm start - режим разработчика
