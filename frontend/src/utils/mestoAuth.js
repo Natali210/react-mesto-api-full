@@ -1,20 +1,17 @@
 export const BASE_URL = "http://localhost:3001";
 
-function request({ url, method = "POST", data, token }) {
+function request({ url, method = "POST", token, data }) {
   return fetch(`${BASE_URL}${url}`, {
-    credentials: 'include',
-    mode: 'cors',
     method: method,
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...(!!token && { Authorization: `Bearer ${token}` }),
     },
     ...(!!data && { body: JSON.stringify(data) }),
+    mode: 'cors',
   }).then((res) => {
-    if (res.ok) {
       return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}`);
   });
 }
 

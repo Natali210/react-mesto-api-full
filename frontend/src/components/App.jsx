@@ -32,7 +32,6 @@ const App = () => {
   const [isInfoTooltip, setIsInfoTooltip] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [userEmail, setUserEmail] = useState('');
-  const [jwt, setJwt] = useState('');
 
   //Эффект, который вызывает Api для обновления значений пользователя и получения карточек
   useEffect(() => {
@@ -61,20 +60,20 @@ const App = () => {
     setIsImageOpen(true);
   }
 
+  //Обработчик для обновления лайков
   function handleCardLike(card) {
     console.log(card);
-    const isLiked = card.likes.includes(currentUser._id); // Проверяем, есть ли уже лайк на этой карточке
-    api
-      .changeLikeCardStatus(card, !isLiked)
-      .then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        );
-        console.log(newCard);
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      });
+    // Проверяем наличие лайка на карточке
+    const isLiked = card.likes.includes(currentUser._id);
+    api.changeLikeCardStatus(card, !isLiked)
+    .then((newCard) => {
+      setCards((state) => state.map((c) => 
+      (c._id === card._id ? newCard : c)));
+      console.log(newCard);
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    });
   }
 
   //Обработчик, обновляющий стейт cards - создается копия массива без удаленой карточки
@@ -143,8 +142,8 @@ const App = () => {
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
-        setIsInfoTooltip(true);
         setIsConfirmed(false);
+        setIsInfoTooltip(true);
       });
   }
   
@@ -154,8 +153,8 @@ const App = () => {
       .then((token) => {
         if (!token) return;
         setLoggedIn(true);
-        history.push("/");
         setUserEmail(email);
+        history.push("/");
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -167,34 +166,27 @@ const App = () => {
   //Разлогин
   function logout() {
     auth.logout();
-    setUserEmail('');
-    history.push("/sign-in");
     setLoggedIn(false);
-    setCards([]);
-    setCurrentUser({});
+    history.push("/sign-in");
   }
 
-  const checkToken = async () => {
-  const token = localStorage.getItem('token');
-    if (token) {
-        setJwt(token);
-        try {
-            const data = await auth(token);
-            setCurrentUser(data);
-            setUserEmail(data.email);
-            setLoggedIn(true);
-            history.push("/");
-        } catch (e) {
-            console.warn(e);
-            setLoggedIn(false);
-        }
-    }
-  };
-
+  //Сохранение пользователя, зашедшего в систему
   useEffect(() => {
-    checkToken();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loggedIn, jwt])
+    function tokenCheck() {
+      return auth.getContent()
+      .then((data) => {
+        setUserEmail(data.email);
+        setLoggedIn(true);
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
+    }
+
+    tokenCheck();
+  // eslint-disable-next-line
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>

@@ -18,7 +18,7 @@ const Card = props => {
   );
 
   // Создаём переменную для кнопки лайка
-  const cardLikeButtonClassName = `element__like ${isLiked && 'element__like_active'}`; 
+  const cardLikeButtonClassName = `element__like ${isLiked ? 'element__like_active' : ""}`; 
 
   return (
     <li className="element" key={cardId}>
@@ -37,9 +37,7 @@ const Card = props => {
             <button 
             type="button" 
             className={cardLikeButtonClassName}
-            onClick={() => {
-              onCardLike(card);
-            }}>
+            onClick={() => onCardLike(card)}>
             </button>
             <span className="element__like-amount">{likesAmount}</span>
           </div>

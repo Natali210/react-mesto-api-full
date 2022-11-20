@@ -19,7 +19,7 @@ const login = async (req, res, next) => {
     }
     const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? SECRET_JWT : 'dev-secret', { expiresIn: '7d' });
     res.cookie('jwt', token, {
-      maxAge: 3600000 * 24 * 7, httpOnly: true, sameSite: 'None', secure: true,
+      maxAge: 3600000 * 24 * 7, sameSite: 'None', httpOnly: true, secure: true,
     }).send({ message: 'Успешная авторизация' });
   } catch (err) {
     next(err);
@@ -27,7 +27,7 @@ const login = async (req, res, next) => {
 };
 
 const logout = (req, res) => {
-  res.clearCookie('jwt', { secure: 'true', sameSite: 'none' }).send();
+  res.clearCookie('jwt', { sameSite: 'None', secure: 'true' }).send();
 };
 
 module.exports = {
