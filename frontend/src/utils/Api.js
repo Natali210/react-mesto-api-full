@@ -96,6 +96,7 @@ class Api {
 
 export const api = new Api({
   baseUrl: 'https://api.nsarycheva.nomoredomains.club',
+  credentials: 'include',
   headers: {
     'Content-Type': 'application/json',
   },

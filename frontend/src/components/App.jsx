@@ -33,6 +33,7 @@ const App = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [userEmail, setUserEmail] = useState('');
 
+  console.log(currentUser);
   //Эффект, который вызывает Api для обновления значений пользователя и получения карточек
   useEffect(() => {
     if (!loggedIn) return;
@@ -40,6 +41,7 @@ const App = () => {
     api.getUserInfo()
     .then((res) => {
       setCurrentUser(res);
+      console.log(setCurrentUser(res));
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
@@ -178,6 +180,7 @@ const App = () => {
         setUserEmail(data.email);
         setLoggedIn(true);
         history.push("/");
+        console.log(data);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
