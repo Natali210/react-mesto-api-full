@@ -11,13 +11,12 @@ const NotFoundError = require('../errors/NotFoundError');
 router.post('/signin', loginValidation, login);
 router.post('/signup', newUserValidation, createNewUser);
 router.post('/logout', logout);
-
-// Авторизация для всех других страниц приложения
-router.use(auth);
-
 router.get('/signout', (req, res) => {
   res.clearCookie('jwt').send({ message: 'Выход' });
 });
+
+// Авторизация для всех других страниц приложения
+router.use(auth);
 
 // Применяем маршруты как мидлвэры
 router.use(userRoutes);

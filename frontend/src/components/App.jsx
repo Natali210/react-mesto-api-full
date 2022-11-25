@@ -33,7 +33,6 @@ const App = () => {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [userEmail, setUserEmail] = useState('');
 
-  console.log(currentUser);
   //Эффект, который вызывает Api для обновления значений пользователя и получения карточек
   useEffect(() => {
     if (!loggedIn) return;
@@ -41,7 +40,6 @@ const App = () => {
     api.getUserInfo()
     .then((res) => {
       setCurrentUser(res);
-      console.log(setCurrentUser(res));
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
@@ -64,14 +62,12 @@ const App = () => {
 
   //Обработчик для обновления лайков
   function handleCardLike(card) {
-    console.log(card);
     // Проверяем наличие лайка на карточке
     const isLiked = card.likes.includes(currentUser._id);
     api.changeLikeCardStatus(card, !isLiked)
     .then((newCard) => {
       setCards((state) => state.map((c) => 
       (c._id === card._id ? newCard : c)));
-      console.log(newCard);
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
@@ -153,7 +149,7 @@ const App = () => {
   function handleLogin(email, password) {
     return auth.authorize(email, password)
       .then((token) => {
-        if (!token) return;
+        if (!{token}) return;
         setLoggedIn(true);
         setUserEmail(email);
         history.push("/");
@@ -180,7 +176,6 @@ const App = () => {
         setUserEmail(data.email);
         setLoggedIn(true);
         history.push("/");
-        console.log(data);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -209,7 +204,7 @@ const App = () => {
               <Register onRegister={handleRegister} />
             </Route>
 
-            <ProtectedRoute path="/" loggedIn={loggedIn}>
+            <ProtectedRoute exact path="/" loggedIn={loggedIn}>
               <Main
               onAddPlace={() => setIsAddPlacePopupOpen(true)}
               onEditProfile={() => setIsEditProfilePopupOpen(true)}

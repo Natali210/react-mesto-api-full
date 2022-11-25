@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.nsarycheva.nomoredomains.club';
+export const BASE_URL = "https://api.nsarycheva.nomoredomains.club";
 
 function request({ url, method = "POST", token, data }) {
   return fetch(`${BASE_URL}${url}`, {
@@ -11,7 +11,10 @@ function request({ url, method = "POST", token, data }) {
     ...(!!data && { body: JSON.stringify(data) }),
     mode: 'cors',
   }).then((res) => {
+    if (res.ok) {
       return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
   });
 }
 
